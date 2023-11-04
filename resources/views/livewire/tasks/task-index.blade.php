@@ -1,21 +1,21 @@
-<div class="rounded-md bg-pink-50 p-4 w-4/5 sm:w-2/5 mx-auto">
-    <div class="flex">
-        <div class="ml-3 mt-1 flex-1 md:flex md:justify-between">
-            <p class="text-sm font-bold text-pink-700">
-                This is Task Number 1
-                <span class="inline-flex items-center rounded-full bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-600 ring-1 ring-inset ring-gray-500/10">
-                     Normal
-                </span>
-            </p>
-            <p class="mt-2 text-md md:ml-6 md:mt-0">
-                <a href="/" class="whitespace-nowrap font-medium text-pink-700 hover:text-pink-600 pr-2">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
+<div>
+    <div class="text-center pb-10">
+        <x-alert />
 
-                <a href="/" class="whitespace-nowrap font-medium text-pink-700 hover:text-pink-600">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-            </p>
+        <input
+            class="rounded-md w-1/5 border-0 py-2 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+            type="text"
+            wire:model="name"
+        />
+        <x-button
+            :click="'save'"
+            :text="$button"
+        />
+        <div class="text-red-500">
+            @error('name') <span class="error">{{ $message }}</span> @enderror
         </div>
     </div>
+    @foreach($tasks as $task)
+        <x-task-item :task="$task"  />
+    @endforeach
 </div>
